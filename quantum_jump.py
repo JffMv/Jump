@@ -28,12 +28,12 @@ def multiplicate_matrix(matrix1,matrix2):
                     result[i][j] = sum(result[i][j],multiplation(matrix1[i][k],matrix2[k][j]))
         return result
 
-###################### libraries
-def canicas(matrix, array):
+###################### libraries pass
+def agate(matrix, array):
     p = multiplicate_matrix (matrix,array)
     return p
 
-def grafica(v):
+def grafic(v):
     print('array end state:', v)
     labels = []
     estado = []
@@ -47,6 +47,14 @@ def grafica(v):
     plt.ylabel('Content')
     plt.xticks(index, labels)
     plt.show()
+
+def double_slit_probabily(a,m,clics):
+    if clics == 0:
+        return  a
+    elif clics == 1:
+        return multiplicate_matrix(m,a)
+    else:
+        return multiplicate_matrix(m,double_slit_probabily(a,m,clics-1))
 
 def run():
     array = [[6],
@@ -64,11 +72,49 @@ def run():
         [0,0,1,0,0,0],
         [1,0,0,0,1,0]
     ]
-    funcion = canicas(matrix, array)
-    grafica(funcion)
-
-
-
+    funcion = agate(matrix, array)
+    grafic(funcion)
+    A = [[[1,0]],
+         [[0,0]],
+         [[0,0]],
+         [[0,0]],
+         [[0,0]],
+         [[0,0]],
+         [[0,0]],
+         [[0,0]],
+        ]
+    M = [[[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]],
+        [[1/2,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]],
+        [[1/2,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]],
+        [[0,0],[1/3,0],[0,0],[1,0],[0,0],[0,0],[0,0],[0,0]],
+        [[0,0],[1/3,0],[0,0],[0,0],[1,0],[0,0],[0,0],[0,0]],
+        [[0,0],[1/3,0],[1/3,0],[0,0],[0,0],[1,0],[0,0],[0,0]],
+        [[0,0],[0,0],[1/3,0],[0,0],[0,0],[0,0],[1,0],[0,0]],
+        [[0,0],[0,0],[1/3,0],[0,0],[0,0],[0,0],[0,0],[1,0]],
+        ]
+    for i in range(3):
+        grafic(double_slit_probabily(A,M,i),i)
+    Matr=[ [[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]],
+        [[1/2**(1/2),0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]],
+        [[1/2**(1/2),0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]],
+        [[0,0],[-1/6**(1/2),1/6**(1/2)],[0,0],[1,0],[0,0],[0,0],[0,0],[0,0]],
+        [[0,0],[-1/6**(1/2),-1/6**(1/2)],[0,0],[0,0],[1,0],[0,0],[0,0],[0,0]],
+        [[0,0],[1/6**(1/2),-1/6**(1/2)],[-1/6**(1/2),1/6**(1/2)],[0,0],[0,0],[1,0],[0,0],[0,0]],
+        [[0,0],[0,0],[-1/6**(1/2),-1/6**(1/2)],[0,0],[0,0],[0,0],[1,0],[0,0]],
+        [[0,0],[0,0],[1/6**(1/2),-1/6**(1/2)],[0,0],[0,0],[0,0],[0,0],[1,0]]
+      ]
+    Arra = [[[1,0]],
+        [[0,0]],
+        [[0,0]],
+        [[0,0]],
+         [[0,0]],
+         [[0,0]],
+         [[0,0]],
+         [[0,0]]
+        ]
+    for i in range(3):
+        grafic(double_slit_probabily(Matr,Arra,i),i)
+    
 
 if __name__ == "__main__":
     run()
